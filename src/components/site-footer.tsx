@@ -31,6 +31,7 @@ export function SiteFooter() {
             <li><Link to="/museu" className="hover:text-accent transition-colors">Museu Virtual</Link></li>
             <li><Link to="/pesquisas" className="hover:text-accent transition-colors">Pesquisas</Link></li>
             <li><Link to="/biblioteca" className="hover:text-accent transition-colors">Biblioteca Digital</Link></li>
+            <li><Link to="/referencias" className="hover:text-accent transition-colors">Referências</Link></li>
             <li><Link to="/mapa" className="hover:text-accent transition-colors">Mapa Interativo</Link></li>
           </ul>
         </div>
