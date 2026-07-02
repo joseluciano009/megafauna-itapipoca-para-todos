@@ -1,7 +1,7 @@
-import preguica from "@/assets/preguica-gigante.jpg";
-import mastodonte from "@/assets/mastodonte.jpg";
-import glyptodonte from "@/assets/glyptodonte.jpg";
-import tigre from "@/assets/tigre-dentes-sabre.jpg";
+import nothrotherium_maquinense from "@/assets/nothrotherium-maquinense.png";
+import glyptodon_clavipes from "@/assets/glyptodon-clavipes.jpg";
+import xenorhinotherium_bahiense from "@/assets/xenorhinotherium-bahiense.png";
+import smilodon_populator from "@/assets/smilodon-populator.png";
 
 export type Animal = {
   slug: string;
@@ -20,84 +20,101 @@ export type Animal = {
 
 export const megafauna: Animal[] = [
   {
-    slug: "preguica-gigante",
-    nome: "Preguiça-Gigante",
-    cientifico: "Eremotherium laurillardi",
-    imagem: preguica,
+    slug: "nothrotherium-maquinense",
+    nome: "Nothrotherium maquinense",
+    cientifico: "Nothrotherium maquinense",
+    imagem: nothrotherium_maquinense,
     resumo:
-      "Herbívoro de até 6 metros que percorreu o Nordeste brasileiro durante o Pleistoceno, com fósseis abundantes nos tanques de Itapipoca.",
+      "O Nothrotherium maquinense foi uma preguiça-gigante terrestre de porte médio que viveu no Brasil durante o Pleistoceno. Alimentava-se de folhas, brotos e frutos.",
     descricao:
-      "A Eremotherium laurillardi foi uma das maiores preguiças-terrícolas que já existiram. Habitava savanas e florestas tropicais da América do Sul e do Norte, sendo um dos mamíferos mais marcantes da megafauna pleistocênica do Ceará.",
+      "Possuía garras longas e fortes utilizadas para puxar galhos e cavar. Caminhava sobre as patas traseiras quando precisava alcançar vegetação mais alta. Era menor que outras preguiças-gigantes, mas ainda muito maior que as preguiças atuais.",
     curiosidades: [
-      "Podia ficar em pé sobre as patas traseiras para alcançar folhas no alto das árvores.",
-      "Era exclusivamente herbívora, apesar do seu porte gigantesco.",
-      "Seus fósseis estão entre os mais comuns nos tanques fossilíferos de Itapipoca.",
+      "Foi descrita a partir de fósseis encontrados na Gruta da Maquiné, em Minas Gerais.",
+      "É uma das espécies fósseis mais conhecidas do Brasil.",
+      "Conviveu com seres humanos no final do Pleistoceno.",
+      "Sua extinção ocorreu há cerca de 11 mil anos.",
     ],
-    distribuicao: "América do Sul e América Central, com ampla presença no Nordeste do Brasil.",
-    periodo: "Pleistoceno tardio (≈ 126 mil – 11 mil anos atrás)",
-    alimentacao: "Herbívoro folívoro",
-    altura: "Até 6 m em pé",
-    peso: "≈ 4 toneladas",
+    distribuicao: "Brasil, especialmente Minas Gerais, Bahia, Ceará, Pernambuco e outras regiões do Nordeste e Sudeste.",
+    periodo: "Pleistoceno (2,6 milhões a 11.700 anos atrás)",
+    alimentacao: "Herbívoro, alimentava-se de folhas, frutos e brotos",
+    altura: " Cerca de 1,2 a 1,5 m quando erguido.",
+    peso: "200 a 300 kg",
   },
+
   {
-    slug: "mastodonte",
-    nome: "Mastodonte",
-    cientifico: "Notiomastodon platensis",
-    imagem: mastodonte,
+    slug: "glyptodon-clavipes",
+    nome: "Glyptodon",
+    cientifico: "Glyptodon clavipes",
+    imagem: glyptodon_clavipes,
     resumo:
-      "Proboscídeo de grande porte, aparentado dos elefantes atuais, que percorreu a América do Sul durante o Pleistoceno.",
+      "O Glyptodon clavipes foi um grande mamífero herbívoro da megafauna sul-americana, aparentado aos tatus atuais. Era protegido por uma carapaça rígida formada por centenas de placas ósseas e viveu durante o Pleistoceno, desaparecendo há cerca de 11 mil anos.",
     descricao:
-      "O Notiomastodon platensis foi um mastodonte sul-americano amplamente distribuído, com registros importantes no Nordeste brasileiro. Pesava cerca de 4 toneladas e habitava ambientes abertos.",
+      "Possuía corpo robusto, patas curtas e fortes e uma grande carapaça arredondada que funcionava como proteção contra predadores. Sua cauda era espessa e revestida por anéis ósseos. Alimentava-se principalmente de gramíneas e outras plantas rasteiras. Seus fósseis são encontrados em diversas regiões da América do Sul, incluindo o Brasil.",
     curiosidades: [
-      "Suas presas chegavam a 3 metros de comprimento.",
-      "Coexistiu com os primeiros humanos a chegarem à América do Sul.",
-      "Foi extinto no fim do Pleistoceno, há aproximadamente 11 mil anos.",
+      "Era parente dos tatus modernos, mas muito maior.",
+      "Sua carapaça podia medir mais de 2 metros de comprimento.",
+      "Conviveu com os primeiros seres humanos que chegaram à América do Sul.",
+      "A extinção provavelmente ocorreu devido às mudanças climáticas e à caça humana.",
     ],
-    distribuicao: "Toda a América do Sul, da Venezuela à Patagônia.",
-    periodo: "Pleistoceno (≈ 2,5 milhões – 11 mil anos atrás)",
-    alimentacao: "Herbívoro generalista",
-    altura: "≈ 2,8 m de altura na cernelha",
-    peso: "3 a 4 toneladas",
+    distribuicao:"Argentina, Uruguai, Paraguai, Bolívia e diversas regiões do Brasil, especialmente Nordeste, Sudeste e Sul.",
+    periodo:"Pleistoceno (aproximadamente 2,58 milhões a 11,7 mil anos atrás).",
+    alimentacao:"Herbívoro.",
+    altura:"Cerca de 1,5 m.",
+    peso:"Entre 1 e 2 toneladas.",
   },
+
   {
-    slug: "glyptodonte",
-    nome: "Glyptodonte",
-    cientifico: "Glyptotherium spp.",
-    imagem: glyptodonte,
+    slug:"xenorhinotherium-bahiense",
+    nome:"Macrauquenídeo brasileiro",
+    cientifico:"Xenorhinotherium bahiense",
+    imagem: xenorhinotherium_bahiense,
     resumo:
-      "Mamífero gigante de carapaça óssea, parente distante dos tatus atuais, símbolo da megafauna sul-americana.",
+      "O Xenorhinotherium bahiense foi um mamífero herbívoro exclusivo da América do Sul, pertencente ao grupo dos macrauquenídeos. Possuía pescoço relativamente longo e uma pequena tromba flexível.",
     descricao:
-      "Os gliptodontes eram herbívoros com carapaça óssea formada por placas fundidas, alguns com cauda armada. Em Itapipoca, são encontrados ostefólitos e fragmentos de cinturão que ajudam a reconstruir sua história.",
-    curiosidades: [
-      "A carapaça podia pesar mais de 400 kg.",
-      "Algumas espécies tinham caudas com pontas espinhosas, usadas como armas.",
-      "São aparentados próximos dos tatus modernos.",
+      "Era semelhante a um camelo sem corcova, com pernas longas e focinho adaptado para sustentar uma pequena tromba. Alimentava-se de folhas, brotos e frutos. Viveu em ambientes de savanas e áreas abertas durante o Pleistoceno.",
+                                      
+    curiosidades:[
+      "Seu nome significa 'animal de nariz estranho da Bahia'.",
+      "Era um dos últimos representantes dos litopternos.",
+      "A pequena tromba provavelmente auxiliava na alimentação.",
+      "Seus fósseis são encontrados principalmente no Nordeste brasileiro.",
     ],
-    distribuicao: "América do Sul e parte da América do Norte.",
-    periodo: "Pleistoceno",
-    alimentacao: "Herbívoro",
-    altura: "≈ 1,5 m",
-    peso: "Até 1 tonelada",
+    distribuicao:
+       "Principalmente Nordeste do Brasil, com registros na Bahia, Ceará, Pernambuco, Piauí e estados vizinhos.",
+    periodo:
+      "Pleistoceno.",
+    alimentacao:
+      "Herbívoro.",
+    altura:
+      "Cerca de 1,8 a 2 m.",
+    peso:
+      "Entre 180 e 300 kg.",
   },
+  
   {
-    slug: "tigre-dentes-de-sabre",
-    nome: "Tigre-Dentes-de-Sabre",
+    slug: "smilodon-populator",
+    nome: "Tigre-dentes-de-sabre",
     cientifico: "Smilodon populator",
-    imagem: tigre,
-    resumo:
-      "Maior felino predador da América do Sul no Pleistoceno, com caninos superiores de até 28 cm.",
-    descricao:
-      "Smilodon populator era um predador robusto, capaz de caçar megafauna como preguiças gigantes e mastodontes jovens. Sua presença na fauna nordestina é confirmada por fragmentos encontrados em tanques fossilíferos.",
+    imagem: smilodon_populator,
+    resumo:"O Smilodon populator foi o maior felino de dentes-de-sabre já conhecido. Era um poderoso predador que habitou a América do Sul durante o Pleistoceno.",
+    descricao:"Possuía corpo musculoso, patas dianteiras extremamente fortes e caninos superiores que podiam atingir cerca de 28 cm de comprimento. Caçava grandes mamíferos, como preguiças-gigantes, cavalos e jovens mastodontes.",
+       
     curiosidades: [
-      "Pesava mais que um leão atual, podendo ultrapassar 400 kg.",
-      "Seus caninos eram serrilhados e usados para golpes precisos.",
-      "Conviveu com os humanos paleoíndios na América do Sul.",
+      "Foi o maior representante do gênero Smilodon.",
+      "Seus dentes eram usados para desferir mordidas profundas após dominar a presa.",
+      "Não era ancestral dos tigres atuais.",
+      "Viveu na mesma época que diversos animais da megafauna brasileira.",
     ],
-    distribuicao: "América do Sul, incluindo o Nordeste brasileiro.",
-    periodo: "Pleistoceno",
-    alimentacao: "Carnívoro",
-    altura: "≈ 1,2 m na cernelha",
-    peso: "300 – 470 kg",
+    distribuicao:
+      "Brasil, Argentina, Uruguai, Paraguai, Bolívia e Venezuela.",
+    periodo:
+      "Pleistoceno.",
+    alimentacao:
+      "Carnívoro.",
+    altura:
+      "Cerca de 1,2 m até os ombros.",
+    peso:
+      "Entre 220 e 400 kg.",
   },
 ];
 
