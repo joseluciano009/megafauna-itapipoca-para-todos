@@ -85,6 +85,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Link
+            to="/login"
+            className="hidden sm:inline-flex items-center rounded-md bg-primary px-3.5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110"
+          >
+            Entrar
+          </Link>
           <button
             onClick={toggleTheme}
             aria-label="Alternar tema"
