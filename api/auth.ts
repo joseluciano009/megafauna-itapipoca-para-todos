@@ -8,27 +8,51 @@
  * Endpoints:  POST /api/auth?action=login | ?action=cadastro
  */
 import { neon } from "@neondatabase/serverless";
-import { createHmac, pbkdf2Sync, randomBytes, timingSafeEqual } from "node:crypto";
 
 const ITERATIONS = 120_000;
+const enc = new TextEncoder();
 
-function hashPassword(password: string, salt = randomBytes(16).toString("hex")) {
-  const derived = pbkdf2Sync(password, salt, ITERATIONS, 32, "sha256").toString("hex");
-  return `${salt}:${derived}`;
+const toHex = (buf: ArrayBuffer) =>
+  [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+const toBase64Url = (bytes: Uint8Array) =>
+  btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+async function derive(password: string, salt: string) {
+  const key = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits(
+    { name: "PBKDF2", salt: enc.encode(salt), iterations: ITERATIONS, hash: "SHA-256" },
+    key,
+    256,
+  );
+  return toHex(bits);
 }
 
-function verifyPassword(password: string, stored: string) {
-  const [salt, derived] = stored.split(":");
-  if (!salt || !derived) return false;
-  const candidate = pbkdf2Sync(password, salt, ITERATIONS, 32, "sha256");
-  const expected = Buffer.from(derived, "hex");
-  return candidate.length === expected.length && timingSafeEqual(candidate, expected);
+async function hashPassword(password: string) {
+  const salt = toHex(crypto.getRandomValues(new Uint8Array(16)).buffer);
+  return `${salt}:${await derive(password, salt)}`;
 }
 
-function signSession(userId: string, secret: string) {
-  const payload = Buffer.from(JSON.stringify({ sub: userId, exp: Date.now() + 7 * 864e5 })).toString("base64url");
-  const sig = createHmac("sha256", secret).update(payload).digest("base64url");
-  return `${payload}.${sig}`;
+async function verifyPassword(password: string, stored: string) {
+  const [salt, expected] = stored.split(":");
+  if (!salt || !expected) return false;
+  const candidate = await derive(password, salt);
+  if (candidate.length !== expected.length) return false;
+  let diff = 0;
+  for (let i = 0; i < candidate.length; i++) diff |= candidate.charCodeAt(i) ^ expected.charCodeAt(i);
+  return diff === 0;
+}
+
+async function signSession(userId: string, secret: string) {
+  const payload = toBase64Url(enc.encode(JSON.stringify({ sub: userId, exp: Date.now() + 7 * 864e5 })));
+  const key = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(payload));
+  return `${payload}.${toBase64Url(new Uint8Array(sig))}`;
 }
 
 export default async function handler(req: Request): Promise<Response> {
@@ -85,27 +109,27 @@ export default async function handler(req: Request): Promise<Response> {
 
     const rows = await sql`
       INSERT INTO usuarios (nome, email, senha_hash)
-      VALUES (${nome}, ${email}, ${hashPassword(senha)})
+      VALUES (${nome}, ${email}, ${await hashPassword(senha)})
       RETURNING id, nome, email
     `;
     const user = rows[0] as { id: string; nome: string; email: string };
     return json(
       { message: "Conta criada com sucesso!", user },
       201,
-      { "Set-Cookie": cookie(signSession(user.id, authSecret)) },
+      { "Set-Cookie": cookie(await signSession(user.id, authSecret)) },
     );
   }
 
   if (action === "login") {
     const rows = await sql`SELECT id, nome, email, senha_hash FROM usuarios WHERE email = ${email}`;
     const user = rows[0] as { id: string; nome: string; email: string; senha_hash: string } | undefined;
-    if (!user || !verifyPassword(senha, user.senha_hash)) {
+    if (!user || !(await verifyPassword(senha, user.senha_hash))) {
       return json({ error: "E-mail ou senha incorretos." }, 401);
     }
     return json(
       { message: "Autenticado com sucesso!", user: { id: user.id, nome: user.nome, email: user.email } },
       200,
-      { "Set-Cookie": cookie(signSession(user.id, authSecret)) },
+      { "Set-Cookie": cookie(await signSession(user.id, authSecret)) },
     );
   }
 
