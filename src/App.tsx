@@ -13,6 +13,7 @@ import Biblioteca from "@/routes/biblioteca";
 import Mapa from "@/routes/mapa";
 import Contato from "@/routes/contato";
 import Referencias from "@/routes/referencias";
+import Login from "@/routes/login";
 import NotFound from "@/routes/not-found";
 
 function ScrollToTop() {
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/mapa" element={<Mapa />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/referencias" element={<Referencias />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

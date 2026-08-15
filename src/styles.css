@@ -210,6 +210,27 @@
 @utility animate-fade-in {
   animation: fade-in 0.8s ease-out both;
 }
+@keyframes aurora {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+  33% { transform: translate3d(6%, -5%, 0) scale(1.12); opacity: 0.95; }
+  66% { transform: translate3d(-5%, 6%, 0) scale(0.95); opacity: 0.7; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+}
+@keyframes drift {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(-120px) scale(1.6); opacity: 0; }
+}
+@utility animate-aurora {
+  animation: aurora 18s ease-in-out infinite;
+}
+@utility animate-drift {
+  animation: drift 12s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora, .animate-drift { animation: none; }
+}
 @utility hover-lift {
   transition: var(--transition-smooth);
   &:hover {
